@@ -6,7 +6,6 @@
         && !empty($_POST['email'])
         && !empty($_POST['password'])) {
         //prevent sql injection
-        $password1 = $_POST['password'];
         $_POST['email'] = htmlspecialchars($_POST['email']);
         $_POST['password'] = htmlspecialchars($_POST['password']);
             
