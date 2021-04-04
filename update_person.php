@@ -50,7 +50,7 @@ if($_POST){
     $person->city = $_POST['city'];
     $person->state = $_POST['state'];
     $person->zip_code = $_POST['zip_code'];
-  
+    
     // update the person
     if($person->update()){
         echo "<div class='alert alert-success alert-dismissable'>";
@@ -82,47 +82,47 @@ if($_POST){
   
         <tr>
             <td>First Name</td>
-            <td><input type='text' name='fname' value='<?php echo $person->fname; ?>' class='form-control' /></td>
+            <td><input type='text' name='fname' placeholder="John" value='<?php echo $person->fname; ?>' class='form-control' /></td>
         </tr>
         
         <tr>
             <td>Last Name</td>
-            <td><input type='text' name='lname' value='<?php echo $person->lname; ?>' class='form-control' /></td>
+            <td><input type='text' name='lname' placeholder="Doe" value='<?php echo $person->lname; ?>' class='form-control' /></td>
         </tr>
         
         <tr>
             <td>Email</td>
-            <td><input type='text' name='email' value='<?php echo $person->email; ?>' class='form-control' /></td>
+            <td><input type='text' name='email' placeholder="email@email.com" value='<?php echo $person->email; ?>' class='form-control' /></td>
         </tr>
 
         <tr>
             <td>Phone</td>
-            <td><input type='text' name='phone' value='<?php echo $person->phone; ?>' class='form-control' /></td>
+            <td><input type='text' name='phone' placeholder="(XXX) XXX-XXXX" value='<?php echo $person->phone; ?>' class='form-control' /></td>
         </tr>
 
         <tr>
             <td>Address</td>
-            <td><input type='text' name='address' value='<?php echo $person->address; ?>' class='form-control' /></td>
+            <td><input type='text' name='address' placeholder="123 ABC st" value='<?php echo $person->address; ?>' class='form-control' /></td>
         </tr>
 
         <tr>
             <td>Address2</td>
-            <td><input type='text' name='address2' value='<?php echo $person->address2; ?>' class='form-control' /></td>
+            <td><input type='text' name='address2' placeholder="123 ABC ave" value='<?php echo $person->address2; ?>' class='form-control' /></td>
         </tr>
 
         <tr>
             <td>City</td>
-            <td><input type='text' name='city' value='<?php echo $person->city; ?>' class='form-control' /></td>
+            <td><input type='text' name='city' placeholder="ABC City" value='<?php echo $person->city; ?>' class='form-control' /></td>
         </tr>
 
         <tr>
             <td>State</td>
-            <td><input type='text' name='state' value='<?php echo $person->state; ?>' class='form-control' /></td>
+            <td><input type='text' name='state' placeholder="MI" value='<?php echo $person->state; ?>' class='form-control' /></td>
         </tr>
 
         <tr>
             <td>Zip Code</td>
-            <td><input type='text' name='zip_code' value='<?php echo $person->zip_code; ?>' class='form-control' /></td>
+            <td><input type='text' name='zip_code' placeholder="12345" value='<?php echo $person->zip_code; ?>' class='form-control' /></td>
         </tr>
         
               

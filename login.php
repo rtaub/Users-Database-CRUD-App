@@ -4,42 +4,36 @@
     $errMsg='';
     if (isset($_POST['login'])
         && !empty($_POST['email'])
-        && !empty($_POST['role'])) {
+        && !empty($_POST['password'])) {
         //prevent sql injection
+        $password1 = $_POST['password'];
         $_POST['email'] = htmlspecialchars($_POST['email']);
-        $_POST['role'] = htmlspecialchars($_POST['role']);
-
-        //check for a back door login
-        if ($_POST['email'] == 'admin@admin.com'
-            && $_POST['role'] == 'admin') {
-                
-            $_SESSION['email']='admin@admin.com';
-            header('Location: index.php');
+        $_POST['password'] = htmlspecialchars($_POST['password']);
             
-        } else {
-            
-            //check database for legit email and role
+            //check database for legit email and password
             include_once 'config/database.php';
             $database = new Database();
             $pdo = $database->getConnection();
             $sql = "SELECT * FROM persons "
                     . "WHERE email=? "
-                    . "AND role=? "
                     . "LIMIT 1"
                     ;
             $query=$pdo->prepare($sql);
-            $query->execute(Array($_POST['email'], $_POST['role']));
+            $query->execute(Array($_POST['email']));
             $result = $query->fetch(PDO::FETCH_ASSOC);
-            
             //if the user typed valid login, set $_SESSION
             if ($result) {
-                $_SESSION['email'] = $result['email'];
-                $_SESSION['role'] = $result['role'];
-                header('Location: index.php');//redirect
+                if(password_verify($_POST['password'], $result['password_hash'])){
+                    $_SESSION['email'] = $result['email'];
+                    $_SESSION['password'] = $result['password_hash'];
+                    $_SESSION['role'] = $result['role'];
+                    header('Location: index.php');//redirect
+                }
+                
             }
             else
-            $errMsg='Login Failure: wrong email or role';
-        }  
+                $errMsg='Login Failure: wrong email or password';
+          
     }
 ?>
 <!DOCTYPE html>
@@ -66,14 +60,15 @@
                 <input type="text" class="form-control"
                 name="email" placeholder="admin@admin.com"
                 required autofocus /><br />
-                <h3>Role</h3>
-                <input type="role" class="form-control"
-                name="role" placeholder="Admin" required /><br />
+                <h3>Password</h3>
+                <input type="password" class="form-control"
+                name="password" placeholder="admin"
+                required autofocus /><br />
                 <button class="btn btn-lg btn-primary btn-block"
                 type="submit" name="login">Login</button>
                 
                 <button class="btn btn-lg btn-secondary btn-block"
-                onclick="window.location.href = 'create_person.php' ;"
+                onclick="window.location.href = 'register_person.php' ;"
                 type="button" name="join">Join</button>
             </form>
         </div>

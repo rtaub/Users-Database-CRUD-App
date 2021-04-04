@@ -16,7 +16,7 @@ echo "<form role='search' action='search.php'>";
         echo "</div>";
     echo "</div>";
 echo "</form>";
-  
+ 
 // create person button
 echo "<div class='right-button-margin'>";
     echo "<a href='create_person.php' class='btn btn-primary pull-right'>";
@@ -27,7 +27,7 @@ echo "</div>";
 // create logout button
 echo "<div class='right-button-margin'>";
     echo "<a href='logout.php' class='btn btn-primary pull-right'>";
-        echo "<span class='glyphicon glyphicon-plus'></span> Logout";
+        echo "Logout";
     echo "</a>";
 echo "</div>";
   
@@ -61,9 +61,9 @@ if($total_rows>0){
                     echo "<a href='read_one.php?id={$id}' class='btn btn-primary left-margin'>";
                         echo "<span class='glyphicon glyphicon-list'></span> Read";
                     echo "</a>";
-  
+                    
                     // edit product button
-                    echo "<a href='update_product.php?id={$id}' class='btn btn-info left-margin'>";
+                    echo "<a href='update_person.php?id={$id}' class='btn btn-info left-margin'>";
                         echo "<span class='glyphicon glyphicon-edit'></span> Edit";
                     echo "</a>";
   

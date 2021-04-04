@@ -25,5 +25,6 @@
         // show page header
         echo "<div class='page-header'>
                 <h1>{$page_title}</h1>
+                <p><a target='_blank' href='https://github.com/rtaub/users'>Github.com repository </a></p>
             </div>";
         ?>

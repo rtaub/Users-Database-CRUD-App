@@ -27,7 +27,7 @@ class Person{
   
     // create product
     function create(){
-  
+        
         // insert query
         $query = "INSERT INTO " . $this->table_name . "
             SET role=:role, fname=:fname, lname=:lname, email=:email, phone=:phone, 

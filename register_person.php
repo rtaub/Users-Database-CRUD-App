@@ -1,10 +1,4 @@
 <?php
-session_start();
-if (!isset($_SESSION['email'])) {
-header("Location: login.php");
-}
-?>
-<?php
 error_reporting(E_ALL & ~E_NOTICE);
 // include database and object files
 include_once 'config/database.php';
@@ -16,11 +10,11 @@ $db = $database->getConnection();
   
 // pass connection to objects
 $person = new Person($db);
-$page_title = "Create Person";
+$page_title = "Register Person";
 include_once "layout_header.php";
   
 echo "<div class='right-button-margin'>
-        <a href='index.php' class='btn btn-default pull-right'>Back to list</a>
+        <a href='login.php' class='btn btn-default pull-right'>Back to login</a>
     </div>";
   
 ?>
@@ -43,12 +37,12 @@ if($_POST){
     $person->state = $_POST['state'];
     $person->zip_code = $_POST['zip_code'];
 
-    if($_SESSION['role'] == 'Admin'){
+
         // create the product
-        if($person->create()){
-            echo "<div class='alert alert-success'>Person was created.</div>";
-        }
+    if($person->create()){
+        echo "<div class='alert alert-success'>Person was created.</div>";
     }
+    
     // if unable to create the product, tell the user
     else{
         echo "<div class='alert alert-danger'>Unable to create person, only admins can create new persons.</div>";
@@ -64,7 +58,7 @@ if($_POST){
   
         <tr>
             <td>Role</td>
-            <td>
+            <td><!--<input type='text' name='role' class='form-control' />--> 
                 <select name='role'>
                     <option value='Admin'>Admin</option>
                     <option value='User' selected>User</option>
@@ -85,7 +79,7 @@ if($_POST){
         <tr>
             <td></td>
             <td>
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary">Register</button>
             </td>
         </tr>
   

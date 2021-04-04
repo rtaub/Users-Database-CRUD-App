@@ -12,26 +12,29 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 <script>
 // JavaScript for deleting product
+
 $(document).on('click', '.delete-object', function(){
   
     var id = $(this).attr('delete-id');
   
     bootbox.confirm({
-        message: "<h4>Are you sure?</h4>",
+        
+        message: "<h4>Delete  <?php echo "<td>{$fname}</td>";?> <?php echo "<td>{$lname}</td>";?></h4>",
+        
         buttons: {
             confirm: {
-                label: '<span class="glyphicon glyphicon-ok"></span> Yes',
+                label: '<span class="glyphicon glyphicon-ok"></span> Confirm',
                 className: 'btn-danger'
             },
             cancel: {
-                label: '<span class="glyphicon glyphicon-remove"></span> No',
+                label: '<span class="glyphicon glyphicon-remove"></span> Cancel',
                 className: 'btn-primary'
             }
         },
         callback: function (result) {
   
             if(result==true){
-                $.post('delete_product.php', {
+                $.post('delete_person.php', {
                     object_id: id
                 }, function(data){
                     location.reload();
